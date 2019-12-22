@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-grandchild',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrandchildComponent implements OnInit {
 
+  @Input() counter: number;
+  @Output() counterChanged = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  reset() {
+    this.counter = 0;
+    this.counterChanged.emit(this.counter);
+  }
 }

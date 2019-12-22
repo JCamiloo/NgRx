@@ -22,4 +22,9 @@ export class ChildComponent {
     this.counterChanged.emit(this.counter);
   }
 
+  resetGrandchild(event) {
+    this.counter = event;
+    this.counterChanged.emit(this.counter);
+  }
+
 }
