@@ -1,3 +1,4 @@
+import { IncreaseAction, DecreaseAction } from './counter/counter.actions';
 import { Component } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
 
@@ -19,12 +20,12 @@ export class AppComponent {
   }
 
   increase() {
-    const action: Action = { type: 'INCREASE' };
+    const action = new IncreaseAction();
     this.store.dispatch(action);
   }
 
   decrease() {
-    const action: Action = { type: 'DECREASE' };
+    const action = new DecreaseAction();
     this.store.dispatch(action);
   }
 }
