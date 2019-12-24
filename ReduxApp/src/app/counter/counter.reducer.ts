@@ -1,16 +1,16 @@
-import { actions, INCREASE, DECREASE, MULTIPLY, DIVIDE, RESET } from './counter.actions';
+import * as counterActions from './counter.actions';
 
-export function counterReducer(state: number = 10, action: actions) {
+export function counterReducer(state: number = 10, action: counterActions.actions) {
     switch(action.type) {
-        case INCREASE:
+        case counterActions.INCREASE:
             return state + 1;
-        case DECREASE:
+        case counterActions.DECREASE:
             return state - 1;
-        case MULTIPLY:
+        case counterActions.MULTIPLY:
             return state * action.payload;
-        case DIVIDE:
+        case counterActions.DIVIDE:
             return state / action.payload;
-        case RESET:
+        case counterActions.RESET:
             return 0;
         default:
             return state;

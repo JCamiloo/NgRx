@@ -1,6 +1,7 @@
-import { IncreaseAction, DecreaseAction } from './counter/counter.actions';
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import * as counterActions from './counter/counter.actions';
 import { AppState } from './app.reducers';
 
 @Component({
@@ -11,19 +12,19 @@ import { AppState } from './app.reducers';
   
 export class AppComponent {
 
-  counter: number; 
+  counter$: Observable<number>; 
 
   constructor(private store: Store<AppState>) {
-    this.store.select('counter').subscribe(state =>  this.counter = state);
+    this.counter$ = this.store.select('counter');
   }
 
   increase() {
-    const action = new IncreaseAction();
+    const action = new counterActions.IncreaseAction();
     this.store.dispatch(action);
   }
 
   decrease() {
-    const action = new DecreaseAction();
+    const action = new counterActions.DecreaseAction();
     this.store.dispatch(action);
   }
 }

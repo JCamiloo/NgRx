@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { ResetAction } from '../counter.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grandchild',
@@ -10,12 +11,12 @@ import { ResetAction } from '../counter.actions';
 })
 export class GrandchildComponent implements OnInit {
 
-  counter: number;
+  counter$: Observable<number>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select('counter').subscribe(counter => this.counter = counter);
+    this.counter$ = this.store.select('counter');
   }
 
   reset() {
