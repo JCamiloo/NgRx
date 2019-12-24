@@ -25,7 +25,4 @@ export class ChildComponent implements OnInit {
   divide() {
     this.store.dispatch(new DivideAction(2));
   }
-
-  resetGrandchild(event) {
-  }
 }
