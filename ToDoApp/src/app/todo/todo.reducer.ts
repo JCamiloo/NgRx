@@ -3,6 +3,7 @@ import * as todoAction from './todo.actions';
 
 const todo1 = new Todo('Learn');
 const todo2 = new Todo('Lern more');
+todo2.completed = true;
 const todo3 = new Todo('Learn even more');
 const initState: Todo[] = [todo1, todo2, todo3];
 
