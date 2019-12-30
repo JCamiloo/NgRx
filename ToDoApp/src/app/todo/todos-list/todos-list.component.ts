@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from 'src/app/app.reducers';
+import { Todo } from './../model/todo.model';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todos-list',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosListComponent implements OnInit {
 
-  constructor() { }
+  todos$: Observable<Todo[]>;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.todos$ = this.store.select('todos');
   }
 
 }
