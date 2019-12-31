@@ -4,7 +4,7 @@ import { Todo } from './../model/todo.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { Subscription } from 'rxjs';
-import { ToggleTodoAction, EditTodoAction } from '../todo.actions';
+import { ToggleTodoAction, EditTodoAction, DeleteTodoAction } from '../todo.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -48,6 +48,10 @@ export class TodoItemComponent implements OnInit, OnDestroy {
     if (this.contentField.value.trim() !== '') {
       this.store.dispatch(new EditTodoAction(this.todo.id, this.contentField.value));
     }
+  }
+
+  deleteTodo() {
+    this.store.dispatch(new DeleteTodoAction(this.todo.id));
   }
 
   get stateField() {

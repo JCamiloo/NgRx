@@ -31,6 +31,10 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
           return todoEdit;
         }
       });
+
+    case todoAction.DELETE_TODO:
+      return state.filter(todoEdit => todoEdit.id !== action.id);
+      
     default:
       return state;
   }
