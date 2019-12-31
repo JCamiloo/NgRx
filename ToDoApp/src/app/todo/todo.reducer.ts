@@ -14,6 +14,19 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
       const todo = new Todo(action.content);
       return [...state, todo];
 
+      
+    case todoAction.EDIT_TODO:
+      return state.map(todoEdit => {
+        if (todoEdit.id === action.id) {
+          return { ...todoEdit, content: action.newContent }
+        } else {
+          return todoEdit;
+        }
+      });
+        
+    case todoAction.DELETE_TODO:
+      return state.filter(todoEdit => todoEdit.id !== action.id);
+          
     case todoAction.TOGGLE_TODO:
       return state.map(todoEdit => {
         if (todoEdit.id === action.id) {
@@ -23,19 +36,11 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
         }
       });
 
-    case todoAction.EDIT_TODO:
+    case todoAction.TOGGLE_ALL_TODO:
       return state.map(todoEdit => {
-        if (todoEdit.id === action.id) {
-          return { ...todoEdit, content: action.newContent }
-        } else {
-          return todoEdit;
-        }
+        return { ...todoEdit, completed: action.state }
       });
-
-    case todoAction.DELETE_TODO:
-      return state.filter(todoEdit => todoEdit.id !== action.id);
-      
-    default:
-      return state;
+    
+    default: return state;
   }
 }
