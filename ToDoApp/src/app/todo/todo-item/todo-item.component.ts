@@ -1,20 +1,25 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Todo } from './../model/todo.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducers';
+import { Subscription } from 'rxjs';
+import { ToggleTodoAction } from '../todo.actions';
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styles: []
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent implements OnInit, OnDestroy {
 
   @Input() todo: Todo;
   @ViewChild('editInput', {static: true}) editInput: ElementRef;
   todoForm: FormGroup;
   editing: boolean;
+  checkSub: Subscription;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { 
     this.todoForm = this.formBuilder.group({
       state: new FormControl(''),
       content: new FormControl('', Validators.required)
@@ -24,6 +29,9 @@ export class TodoItemComponent implements OnInit {
   ngOnInit() {
     this.stateField.setValue(this.todo.completed);
     this.contentField.setValue(this.todo.content);
+    this.checkSub = this.stateField.valueChanges.subscribe(() => {
+      this.store.dispatch(new ToggleTodoAction(this.todo.id));
+    });
   }
 
   edit() {
@@ -41,5 +49,9 @@ export class TodoItemComponent implements OnInit {
 
   get contentField() {
     return this.todoForm.get('content');
+  }
+
+  ngOnDestroy() {
+    this.checkSub.unsubscribe();
   }
 }
