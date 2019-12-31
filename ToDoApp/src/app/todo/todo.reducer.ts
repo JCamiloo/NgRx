@@ -22,6 +22,15 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
           return todoEdit;
         }
       });
+
+    case todoAction.EDIT_TODO:
+      return state.map(todoEdit => {
+        if (todoEdit.id === action.id) {
+          return { ...todoEdit, content: action.newContent }
+        } else {
+          return todoEdit;
+        }
+      });
     default:
       return state;
   }
