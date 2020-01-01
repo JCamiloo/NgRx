@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app.reducers';
 import { Todo } from './../model/todo.model';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import * as filterActions from '../../filter/filter.actions';
 
 @Component({
   selector: 'app-todos-list',
@@ -11,12 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class TodosListComponent implements OnInit {
 
-  todos$: Observable<Todo[]>;
+  todos: Todo[] = [];
+  filter: filterActions.validFilters;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.todos$ = this.store.select('todos');
+    this.store.subscribe(state => {
+      this.todos = state.todos;
+      this.filter = state.filter;
+    });
   }
 
 }
