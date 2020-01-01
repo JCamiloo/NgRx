@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as filterActions from '../../filter/filter.actions';
+import * as todoActions from '../todo.actions';
 import { AppState } from 'src/app/app.reducers';
 import { Store } from '@ngrx/store';
 import { Todo } from './../model/todo.model';
@@ -32,6 +33,10 @@ export class TodoFooterComponent implements OnInit, OnDestroy {
 
   countPending(todos: Todo[]) {
     this.todosLeft = todos.filter(todo => !todo.completed).length;
+  }
+
+  clearTodoCompleted() {
+    this.store.dispatch(new todoActions.DeleteAllTodoAction());
   }
 
   ngOnDestroy() {

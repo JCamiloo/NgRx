@@ -8,5 +8,5 @@
       <a [ngClass]="{ 'selected': filter === currentFilter }"> {{ filter }} </a >
     </li>
   </ul>
-  <button class="clear-completed">Clear completed</button>
+  <button (click)="clearTodoCompleted()" class="clear-completed">Clear completed</button>
 </footer>

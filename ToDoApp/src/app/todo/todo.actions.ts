@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 export const ADD_TODO = "[TODO] Add todo";
 export const EDIT_TODO = "[TODO] Edit todo";
 export const DELETE_TODO = "[TODO] Delete todo";
+export const DELETE_ALL_TODO = "[TODO] Delete all todo";
 export const TOGGLE_TODO = "[TODO] Toggle todo";
 export const TOGGLE_ALL_TODO = "[TODO] Toggle all todo";
 
@@ -21,6 +22,10 @@ export class DeleteTodoAction implements Action {
   constructor(public id: number) {}
 }
 
+export class DeleteAllTodoAction implements Action {
+  readonly type = DELETE_ALL_TODO;
+}
+
 export class ToggleTodoAction implements Action {
   readonly type = TOGGLE_TODO;
   constructor(public id: number) {}
@@ -34,5 +39,6 @@ export class ToggleAllTodoAction implements Action {
 export type Actions = AddTodoAction |
                       EditTodoAction |
                       DeleteTodoAction |
+                      DeleteAllTodoAction |
                       ToggleTodoAction |
                       ToggleAllTodoAction;

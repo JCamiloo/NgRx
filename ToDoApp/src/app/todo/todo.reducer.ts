@@ -13,7 +13,6 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
     case todoAction.ADD_TODO:
       const todo = new Todo(action.content);
       return [...state, todo];
-
       
     case todoAction.EDIT_TODO:
       return state.map(todoEdit => {
@@ -27,6 +26,9 @@ export function todoReducer(state = initState, action: todoAction.Actions): Todo
     case todoAction.DELETE_TODO:
       return state.filter(todoEdit => todoEdit.id !== action.id);
           
+    case todoAction.DELETE_ALL_TODO:
+      return state.filter(todoEdit => !todoEdit.completed);
+    
     case todoAction.TOGGLE_TODO:
       return state.map(todoEdit => {
         if (todoEdit.id === action.id) {
