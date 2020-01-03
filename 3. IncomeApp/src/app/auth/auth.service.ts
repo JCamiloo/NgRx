@@ -23,4 +23,9 @@ export class AuthService {
                     .then(resp => this.router.navigate(['/']))
                     .catch(err => this.toastr.error(err['message'], 'Error'));
   }
+
+  logout() {
+    this.router.navigate(['/login']);
+    this.afAuth.auth.signOut();
+  }
 }
