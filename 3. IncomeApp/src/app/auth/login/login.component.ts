@@ -14,8 +14,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(data: any) {
-    console.log(data);
     this.authSrv.login(data.email, data.password);
   }
-
 }
