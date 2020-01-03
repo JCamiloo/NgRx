@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, 
+              private afDB: AngularFirestore,
               private router: Router, 
               private toastr: ToastrService) { }
 
@@ -22,14 +25,19 @@ export class AuthService {
 
   createUser(name: string, email: string, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-                    .then(resp => this.router.navigate(['/']))
-                    .catch(err => this.toastr.error(err['message'], 'Error'));
+        .then(resp => {
+          const user: User = { uid: resp.user.uid, name, email };
+          this.afDB.doc(`${user.uid}/user`).set(user).then(() => {
+            this.router.navigate(['/'])
+          });
+        })
+        .catch(err => this.toastr.error(err['message'], 'Error'));
   }
 
   login(email: string, password: string) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
-                    .then(resp => this.router.navigate(['/']))
-                    .catch(err => this.toastr.error(err['message'], 'Error'));
+        .then(resp => this.router.navigate(['/']))
+        .catch(err => this.toastr.error(err['message'], 'Error'));
   }
 
   isAuth() {
