@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -29,6 +30,13 @@ export class AuthService {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
                     .then(resp => this.router.navigate(['/']))
                     .catch(err => this.toastr.error(err['message'], 'Error'));
+  }
+
+  isAuth() {
+    return this.afAuth.authState.pipe(map(fbUser => { 
+      fbUser === null && (this.router.navigate(['/login'])); 
+      return fbUser !== null;
+    }));
   }
 
   logout() {
