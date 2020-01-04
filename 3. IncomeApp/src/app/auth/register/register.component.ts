@@ -1,6 +1,9 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { AppState } from 'src/app/app.reducer';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -9,9 +12,12 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authSrv: AuthService) { }
+  isLoading$: Observable<boolean>;
+
+  constructor(private authSrv: AuthService, private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.isLoading$ = this.store.select('ui').pipe(map(ui => ui.isLoading));
   }
 
   onSubmit(data: any) {

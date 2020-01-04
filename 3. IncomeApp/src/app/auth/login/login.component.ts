@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +12,12 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authSrv: AuthService) { }
+  isLoading$: Observable<boolean>;
+
+  constructor(private authSrv: AuthService, private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.isLoading$ = this.store.select('ui').pipe(map(ui => ui.isLoading));
   }
 
   onSubmit(data: any) {
