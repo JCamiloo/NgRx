@@ -9,5 +9,7 @@ export function UIReducer(state = initState, action: UIActions.actions): State {
       return { isLoading: true };
     case UIActions.DEACTIVATE_LOADING:
       return { isLoading: false };
+    default:
+      return state;
   }
 }
