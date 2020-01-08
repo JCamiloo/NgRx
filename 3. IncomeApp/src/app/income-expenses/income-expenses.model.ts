@@ -8,7 +8,6 @@ export class IncomeExpenses {
     this.description = incomeExpensesObj && incomeExpensesObj.description || null;
     this.amount = incomeExpensesObj && incomeExpensesObj.amount || null;
     this.type = incomeExpensesObj && incomeExpensesObj.type || null;
-    this.uid = incomeExpensesObj && incomeExpensesObj.uid || null;
   }
 }
 
