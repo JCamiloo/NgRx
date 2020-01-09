@@ -23,19 +23,23 @@ export class IncomeExpensesService {
               private store: Store<AppState>) { }
 
   initIncomeExpensesListener() {
-    this.store.select('auth').pipe(filter(auth => auth.user != null))
-              .subscribe(auth => this.incomeExpensesItems(auth.user.uid));
+    this.incomeExpensesSubs.push(
+      this.store.select('auth').pipe(filter(auth => auth.user != null))
+                .subscribe(auth => this.incomeExpensesItems(auth.user.uid))
+    );
   }
   
   private incomeExpensesItems(uid: string) {
-    this.afDB.collection(`${uid}/incomes-expenses/items`).snapshotChanges().pipe(map(docData => {
-      return docData.map(doc => {
-        return {
-          uid: doc.payload.doc.id,
-          ...doc.payload.doc.data()
-        };
-      });
-    })).subscribe((collection: IncomeExpenses[]) => this.store.dispatch(new SetItemsAction(collection)));
+    this.incomeExpensesSubs.push(
+      this.afDB.collection(`${uid}/incomes-expenses/items`).snapshotChanges().pipe(map(docData => {
+        return docData.map(doc => {
+          return {
+            uid: doc.payload.doc.id,
+            ...doc.payload.doc.data()
+          };
+        });
+      })).subscribe((collection: IncomeExpenses[]) => this.store.dispatch(new SetItemsAction(collection)))
+    );
   }
 
   createIncomeExpenses(incomeExpenses: IncomeExpenses) {
