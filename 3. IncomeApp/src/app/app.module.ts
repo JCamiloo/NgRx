@@ -21,6 +21,7 @@ import { DetailComponent } from './income-expenses/detail/detail.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { OrderIncomesPipe } from './income-expenses/order-incomes.pipe';
 import { environment } from './../environments/environment';
 import { appReducers } from './app.reducer';
 
@@ -35,7 +36,8 @@ import { appReducers } from './app.reducer';
     DetailComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrderIncomesPipe
   ],
   imports: [
     BrowserModule,

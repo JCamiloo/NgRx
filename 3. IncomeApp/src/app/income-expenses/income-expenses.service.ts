@@ -54,6 +54,13 @@ export class IncomeExpensesService {
     });
   }
 
+  deleteIncomeExpenses(item: IncomeExpenses) {
+    const user = this.authSrv.getUser();
+    this.afDB.doc(`${user.uid}/incomes-expenses/items/${item.uid}`).delete().then(() => {
+      this.toast.success(`${item.description} eliminado`)
+    }).catch((err) => this.toast.error(err['message']));
+  }
+
   cancelSubscriptions() {
     this.incomeExpensesSubs.forEach(subscription => subscription.unsubscribe());
   }

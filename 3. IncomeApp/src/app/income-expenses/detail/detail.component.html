@@ -15,7 +15,7 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let item of (items$ | async)">
+            <tr *ngFor="let item of (items$ | async | orderIncomes)">
               <td> {{ item.description }} </td>
               <td> {{ item.amount | currency }} </td>
               <td> 
@@ -25,7 +25,7 @@
                 </span>
               </td>
               <td> 
-                <button class="btn btn-danger btn-sm" (click)="deleteItem(item.uid)">
+                <button class="btn btn-danger btn-sm" (click)="deleteItem(item)">
                   <i class="fa fa-trash">
                     Borrar
                   </i>
