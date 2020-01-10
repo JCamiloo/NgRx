@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
+import { ChartsModule } from 'ng2-charts';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { appReducers } from './app.reducer';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ progressBar: true }),
+    ChartsModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Subscription } from 'rxjs';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-statistics',
@@ -16,6 +17,8 @@ export class StatisticsComponent implements OnInit {
   incomesCounter: number;
   expensesCounter: number;
   dataSubscription: Subscription = new Subscription();
+  doughnutChartLabels: Label[] = ['Ingesos', 'Egresos'];
+  doughnutChartData: number[] = [];
 
   constructor(private store: Store<AppState>) { }
 
@@ -39,5 +42,6 @@ export class StatisticsComponent implements OnInit {
         this.expenses += item.amount;
       }
     });
+    this.doughnutChartData = [this.incomes, this.expenses];
   }
 }
