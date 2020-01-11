@@ -8,6 +8,8 @@ export function AuthReducer(state = initState, action: AuthActions.actions): Aut
   switch (action.type) {
     case AuthActions.SET_USER:
       return { user: {...action.user} };
+    case AuthActions.UNSET_USER:
+      return { user: null };
     default:
       return state;
   }

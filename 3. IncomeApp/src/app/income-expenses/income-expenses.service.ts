@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import * as UIActions from '../shared/ui.actions';
 import { filter, map } from 'rxjs/operators';
-import { SetItemsAction } from './income-expenses.actions';
+import { SetItemsAction, UnsetItemsAction } from './income-expenses.actions';
 import { Subscription } from 'rxjs';
 
 @Injectable({
@@ -63,5 +63,6 @@ export class IncomeExpensesService {
 
   cancelSubscriptions() {
     this.incomeExpensesSubs.forEach(subscription => subscription.unsubscribe());
+    this.store.dispatch(new UnsetItemsAction());
   }
 }

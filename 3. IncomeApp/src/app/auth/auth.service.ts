@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
-import * as firebase from 'firebase';
-import { User, UserObj } from './user.model';
-import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
-import { ActivateLoadingAction, DeactivateLoadingAction } from '../shared/ui.actions';
-import { SetUserAction } from './auth.actions';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as UIActions from '../shared/ui.actions';
+import * as AuthActions from './auth.actions';
+import { AppState } from '../app.reducer';
+import { User, UserObj } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class AuthService {
       if (fbUser) {
         this.userSubscription = this.afDB.doc(`${fbUser.uid}/user`).valueChanges().subscribe((userObj: UserObj) => {
           const user = new User(userObj);
-          this.store.dispatch(new SetUserAction(user));
+          this.store.dispatch(new AuthActions.SetUserAction(user));
           this.user = user;
         });
       } else {
@@ -42,30 +42,30 @@ export class AuthService {
   }
 
   createUser(name: string, email: string, password: string) {
-    this.store.dispatch(new ActivateLoadingAction());
+    this.store.dispatch(new UIActions.ActivateLoadingAction());
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(resp => {
           const user: User = { uid: resp.user.uid, name, email };
           this.afDB.doc(`${user.uid}/user`).set(user).then(() => {
             this.router.navigate(['/']);
-            this.store.dispatch(new DeactivateLoadingAction());
+            this.store.dispatch(new UIActions.DeactivateLoadingAction());
           });
         })
         .catch(err => {
-          this.store.dispatch(new DeactivateLoadingAction());
+          this.store.dispatch(new UIActions.DeactivateLoadingAction());
           this.toastr.error(err['message'], 'Error');
         });
   }
 
   login(email: string, password: string) {
-    this.store.dispatch(new ActivateLoadingAction());
+    this.store.dispatch(new UIActions.ActivateLoadingAction());
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(resp => { 
           this.router.navigate(['/']);
-          this.store.dispatch(new DeactivateLoadingAction());
+          this.store.dispatch(new UIActions.DeactivateLoadingAction());
         })
         .catch(err => {
-          this.store.dispatch(new DeactivateLoadingAction());
+          this.store.dispatch(new UIActions.DeactivateLoadingAction());
           this.toastr.error(err['message'], 'Error');
         });
   }
@@ -80,6 +80,7 @@ export class AuthService {
   logout() {
     this.router.navigate(['/login']);
     this.afAuth.auth.signOut();
+    this.store.dispatch(new AuthActions.UnsetUserAction());
   }
 
   getUser() {
