@@ -1,4 +1,4 @@
-import { IncomeExpenses } from './../income-expenses.model';
+import { IncomeExpenses } from '../../models/income-expenses.model';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';

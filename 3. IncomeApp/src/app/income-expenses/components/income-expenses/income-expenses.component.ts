@@ -1,7 +1,7 @@
-import { IncomeExpensesService } from './../income-expenses.service';
+import { IncomeExpensesService } from '../../services/income-expenses.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IncomeExpenses } from './../income-expenses.model';
+import { IncomeExpenses } from '../../models/income-expenses.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Observable } from 'rxjs';

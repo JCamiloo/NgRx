@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { IncomeExpenses } from './income-expenses.model';
-import { AuthService } from '../auth/auth.service';
+import { IncomeExpenses } from '../models/income-expenses.model';
+import { AuthService } from '../../auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
-import * as UIActions from '../shared/ui.actions';
+import { AppState } from '../../app.reducer';
+import * as UIActions from '../../shared/ui.actions';
 import { filter, map } from 'rxjs/operators';
-import { SetItemsAction, UnsetItemsAction } from './income-expenses.actions';
+import { SetItemsAction, UnsetItemsAction } from '../income-expenses.actions';
 import { Subscription } from 'rxjs';
 
 @Injectable({

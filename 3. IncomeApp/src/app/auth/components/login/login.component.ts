@@ -1,16 +1,16 @@
-import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
+  selector: 'app-login',
+  templateUrl: './login.component.html',
   styles: []
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   isLoading$: Observable<boolean>;
 
@@ -21,6 +21,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data: any) {
-    this.authSrv.createUser(data.name, data.email, data.password);
+    this.authSrv.login(data.email, data.password);
   }
 }

@@ -1,4 +1,4 @@
-import { IncomeExpenses } from './income-expenses.model';
+import { IncomeExpenses } from './models/income-expenses.model';
 import { Action } from '@ngrx/store';
 export const SET_ITEMS = '[Income expenses] Set items'
 export const UNSET_ITEMS = '[Income expenses] Unset items'

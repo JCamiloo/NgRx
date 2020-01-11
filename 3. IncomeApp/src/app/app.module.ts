@@ -13,16 +13,16 @@ import { ChartsModule } from 'ng2-charts';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IncomeExpensesComponent } from './income-expenses/income-expenses/income-expenses.component';
-import { StatisticsComponent } from './income-expenses/statistics/statistics.component';
-import { DetailComponent } from './income-expenses/detail/detail.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { OrderIncomesPipe } from './income-expenses/order-incomes.pipe';
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
+import { IncomeExpensesComponent } from './income-expenses/components/income-expenses/income-expenses.component';
+import { StatisticsComponent } from './income-expenses/components/statistics/statistics.component';
+import { DetailComponent } from './income-expenses/components/detail/detail.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { OrderIncomesPipe } from './income-expenses/pipes/order-incomes.pipe';
 import { environment } from './../environments/environment';
 import { appReducers } from './app.reducer';
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IncomeExpenses } from './income-expenses.model';
+import { IncomeExpenses } from '../models/income-expenses.model';
 
 @Pipe({
   name: 'orderIncomes'

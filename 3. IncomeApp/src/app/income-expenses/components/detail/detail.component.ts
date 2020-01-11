@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Observable } from 'rxjs';
-import { IncomeExpenses } from '../income-expenses.model';
-import { IncomeExpensesService } from '../income-expenses.service';
+import { IncomeExpenses } from '../../models/income-expenses.model';
+import { IncomeExpensesService } from '../../services/income-expenses.service';
 
 @Component({
   selector: 'app-detail',

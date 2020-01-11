@@ -7,10 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as UIActions from '../shared/ui.actions';
-import * as AuthActions from './auth.actions';
-import { AppState } from '../app.reducer';
-import { User, UserObj } from './user.model';
+import * as UIActions from '../../shared/ui.actions';
+import * as AuthActions from '../auth.actions';
+import { AppState } from '../../app.reducer';
+import { User, UserObj } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'

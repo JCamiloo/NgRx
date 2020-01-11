@@ -1,4 +1,4 @@
-import { IncomeExpenses } from './income-expenses.model';
+import { IncomeExpenses } from './models/income-expenses.model';
 import * as incomeExpensesActions from './income-expenses.actions';
 
 export interface IncomeExpensesState { items: IncomeExpenses[]; }
