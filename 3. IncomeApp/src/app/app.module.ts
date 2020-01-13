@@ -1,8 +1,8 @@
+import { IncomeExpensesModule } from './income-expenses/income-expenses.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,32 +12,24 @@ import { ChartsModule } from 'ng2-charts';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
-import { IncomeExpensesComponent } from './income-expenses/components/income-expenses/income-expenses.component';
-import { StatisticsComponent } from './income-expenses/components/statistics/statistics.component';
-import { DetailComponent } from './income-expenses/components/detail/detail.component';
-import { OrderIncomesPipe } from './income-expenses/pipes/order-incomes.pipe';
 import { environment } from './../environments/environment';
 import { appReducers } from './app.reducer';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    IncomeExpensesComponent,
-    StatisticsComponent,
-    DetailComponent,
-    OrderIncomesPipe
+    DashboardComponent
   ],
   imports: [
     AuthModule,
+    IncomeExpensesModule,
     SharedModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserAnimationsModule,
