@@ -1,7 +1,7 @@
+import { IncomeState } from './../../income-expenses.reducer';
 import { IncomeExpenses } from '../../models/income-expenses.model';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
 import { Subscription } from 'rxjs';
 import { Label } from 'ng2-charts';
 
@@ -20,7 +20,7 @@ export class StatisticsComponent implements OnInit {
   doughnutChartLabels: Label[] = ['Ingesos', 'Egresos'];
   doughnutChartData: number[] = [];
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<IncomeState>) { }
 
   ngOnInit() {
     this.dataSubscription = this.store.select('incomeExpenses').subscribe(data => {

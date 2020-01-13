@@ -1,4 +1,3 @@
-import { IncomeExpensesModule } from './../income-expenses/income-expenses.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -21,13 +20,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
-    RouterModule.forChild(routes),
-    IncomeExpensesModule
+    RouterModule.forChild(routes)
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
+  declarations: []
 })
 export class DashboardModule { }

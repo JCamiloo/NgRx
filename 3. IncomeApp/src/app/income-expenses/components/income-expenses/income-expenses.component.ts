@@ -1,9 +1,9 @@
+import { IncomeState } from './../../income-expenses.reducer';
 import { IncomeExpensesService } from '../../services/income-expenses.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IncomeExpenses } from '../../models/income-expenses.model';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class IncomeExpensesComponent implements OnInit {
   type: string = 'income';
   loading$: Observable<boolean>;
 
-  constructor(private incomeSrv: IncomeExpensesService, private store: Store<AppState>) { }
+  constructor(private incomeSrv: IncomeExpensesService, private store: Store<IncomeState>) { }
 
   ngOnInit() {
     this.loading$ = this.store.select('ui').pipe(map(ui => ui.isLoading));
