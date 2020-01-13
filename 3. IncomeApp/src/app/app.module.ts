@@ -16,13 +16,11 @@ import { DashboardComponent } from './dashboard/components/dashboard/dashboard.c
 import { IncomeExpensesComponent } from './income-expenses/components/income-expenses/income-expenses.component';
 import { StatisticsComponent } from './income-expenses/components/statistics/statistics.component';
 import { DetailComponent } from './income-expenses/components/detail/detail.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { OrderIncomesPipe } from './income-expenses/pipes/order-incomes.pipe';
 import { environment } from './../environments/environment';
 import { appReducers } from './app.reducer';
 import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,13 +29,11 @@ import { AuthModule } from './auth/auth.module';
     IncomeExpensesComponent,
     StatisticsComponent,
     DetailComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
     OrderIncomesPipe
   ],
   imports: [
     AuthModule,
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
