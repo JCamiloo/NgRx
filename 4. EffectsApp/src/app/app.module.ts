@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { UsersModule } from './users/users.module';
 import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
@@ -17,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule,
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ 
       maxAge: 25,
       // logOnly: environment.production
