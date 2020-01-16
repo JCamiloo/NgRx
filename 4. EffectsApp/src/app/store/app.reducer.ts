@@ -1,0 +1,1 @@
+import * as reducers from './reducers';

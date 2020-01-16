@@ -1,4 +1,4 @@
-import { User } from './../../models/user.model';
+import { User } from '../../models/user.model';
 import * as fromUsers from '../actions';
 
 export interface UsersState {
