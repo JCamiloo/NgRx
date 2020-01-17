@@ -18,7 +18,7 @@ const initState: UsersState = {
 export function usersReducer(state = initState, action: fromUsers.usersActions): UsersState {
   switch (action.type) {
     case fromUsers.FETCH_USERS:
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: null };
     case fromUsers.FETCH_USERS_SUCCESS:
       return { ...state, loading: false, loaded: true, users: [...action.users] };
     case fromUsers.FETCH_USERS_FAIL:
