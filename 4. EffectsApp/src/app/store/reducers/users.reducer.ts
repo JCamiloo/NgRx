@@ -22,7 +22,16 @@ export function usersReducer(state = initState, action: fromUsers.usersActions):
     case fromUsers.FETCH_USERS_SUCCESS:
       return { ...state, loading: false, loaded: true, users: [...action.users] };
     case fromUsers.FETCH_USERS_FAIL:
-      return { ...state, loading: false, loaded: false, error: action.payload };
+      return { 
+        ...state, 
+        loading: false, 
+        loaded: false, 
+        error: {
+          status: action.payload.status,
+          message: action.payload.message,
+          url: action.payload.url
+        } 
+      };
     default:
       return state;
   }
