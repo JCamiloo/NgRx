@@ -13,4 +13,8 @@ export class UserService {
   getUsers() {
     return this.http.get(`${environment.api}/users?per_page=6`).pipe(map(resp => resp['data']));
   }
+
+  getUserById(id: string) {
+    return this.http.get(`${environment.api}/users/${id}`).pipe(map(resp => resp['data']));
+  }
 }
