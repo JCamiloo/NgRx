@@ -37,7 +37,7 @@ import { FilterPipe } from './filter/filter.pipe';
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      /* logOnly: environment.production */
     })
   ],
   providers: [],
