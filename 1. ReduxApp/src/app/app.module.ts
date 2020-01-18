@@ -22,7 +22,7 @@ import { counterReducer } from './counter/counter.reducer';
     StoreModule.forRoot({ counter: counterReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      /* logOnly: environment.production */
     })
   ],
   providers: [],
